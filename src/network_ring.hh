@@ -1,8 +1,9 @@
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
-
-#define POINT_COUNT 100
+#include <mutex>
+#include "robot.hh"
+#include "configs.hh"
 
 class network_ring 
 {
@@ -11,11 +12,14 @@ class network_ring
 
         struct ring_point 
         {
-            int robot_count;
-        };
-        
-        int ring_access_mutex; 
+			std::mutex lock;
+			robot *r;
+		};
         ring_point ring[POINT_COUNT];
 
-        void move_ring_point(int, int);
+        int move_ring_point(robot*);
+		int get_point_count();
+
+	private:
+		int normalize_location(robot*);
 };
