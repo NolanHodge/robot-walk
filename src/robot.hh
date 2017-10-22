@@ -1,3 +1,7 @@
+#ifndef ROBOT_H
+#define ROBOT_H
+#endif
+
 #include <stdlib.h>
 #include "configs.hh"
 
@@ -13,18 +17,20 @@ class robot
 		int get_location();
 		int set_location(int);
 		int get_size();
+        int get_id();
 
 	private:
 		int flip_coin();
 		int change_direction();
-	
+	    int generate_random_id();
+        
 	// Variables
 	private:
 		int direction;
-		network_ring *ring;
 		int speed;
 		int size;
 		int location;
+        int id;
 
 	public:
 		int on_round;

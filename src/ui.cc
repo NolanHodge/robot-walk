@@ -6,7 +6,7 @@ void ui::draw(network_ring *ring)
 	{
 		if (ring->ring[i].r != NULL )
 		{
-			std::cout << "R:" << ring->ring[i].r->get_size() << " -- ";
+			std::cout << "R:" << ring->ring[i].size << " -- ";
 		}
 		else
 		{

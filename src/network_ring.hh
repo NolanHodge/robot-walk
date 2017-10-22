@@ -1,3 +1,7 @@
+#ifndef NETWORK_RING_H
+#define NETWORK_RING_H
+#endif
+
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
@@ -14,6 +18,7 @@ class network_ring
         {
 			std::mutex lock;
 			robot *r;
+            int size;
 		};
         ring_point ring[POINT_COUNT];
 

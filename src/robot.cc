@@ -6,6 +6,7 @@ robot::robot(int l)
 	direction = change_direction();
 	location = l;
 	speed = SPEED;
+    generate_random_id();
 }
 
 // Flip a fair coin; heads or tails
@@ -22,10 +23,20 @@ int robot::change_direction()
 
 // When we collide with another robot
 // Increase the size of the robot and flip another fair coin
-int robot::on_collision()
+void robot::on_collision()
 {
 	size++;
 	direction = change_direction();
+}
+
+int robot::generate_random_id()
+{
+    id = rand();
+}
+
+int robot::get_id()
+{
+    return id;
 }
 
 int robot::get_location()

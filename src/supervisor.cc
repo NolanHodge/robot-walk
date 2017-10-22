@@ -1,20 +1,15 @@
 #include "supervisor.hh"
 
-supervisor::supervisor(network_ring *n)
+supervisor::supervisor()
 {
-	for (int i = 0; i < ROBOT_COUNT; i++) {
+    network_ring *r = new network_ring();
+	for (int i = 0; i < ROBOT_COUNT; i++) 
+    {
 		int location = select_random_location();
 		robots[i] = new robot(location);
 	}
-	ring = n;
+	ring = r;
 	round_count = 0;
-}
-
-void supervisor::execute()
-{
-	for (int i = 0; i < ROBOT_COUNT; i++) {
-		walk(robots[i]);
-	}
 }
 
 int supervisor::get_robot_count()
@@ -30,14 +25,35 @@ int supervisor::select_random_location()
 
 void supervisor::walk(robot *r)
 {
-	while (true)
+    log("is now walking..", r);
+    while (true)
 	{
 		r->set_location(ring->move_ring_point(r));
-
+        log("has moved", r);
+        
 		if (r->get_location() == -1)
 		{
-			return; // were done here
+            log("has collided", r);
+            return; // were done here
 		}
-		_sleep(500);
+        sleep(500);
 	}
+}
+
+void supervisor::execute()
+{
+    for (robot *r : robots)
+    {
+        log("has been dropped", r);
+		std::thread _t(&supervisor::walk, this, r);
+        _t.detach();
+	}
+    while (true)
+    {
+    }
+}
+
+void supervisor::log(std::string s, robot *r)
+{
+    std::cout << "[Robot:" << r->get_id() << " Location:" << r->get_location() << "] " << s << std::endl;
 }

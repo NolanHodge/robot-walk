@@ -1,5 +1,5 @@
+#include <stdlib.h>
 #include "network_ring.hh"
-#include "robot.hh"
 #include "configs.hh"
 
 class ui

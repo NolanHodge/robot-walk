@@ -8,17 +8,18 @@ network_ring::network_ring()
 // Move a robot on the ring, if a collision happens, merge robots.
 int network_ring::move_ring_point(robot *r)
 {
+	ring[r->get_location()].size = 0;
 	ring[r->get_location()].lock.unlock();
-	ring[r->get_location()].r = NULL;
 
 	int new_location = normalize_location(r);
 	if (ring[new_location].lock.try_lock())
 	{
 		ring[new_location].r = r;
+	    ring[r->get_location()].r = NULL;
 	}
 	else 
 	{
-		r = ring[new_location].r;
+	//	r = ring[new_location].r;
 		ring[new_location].r->on_collision();
 		return -1;
 	}
