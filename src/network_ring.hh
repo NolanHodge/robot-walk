@@ -17,7 +17,8 @@ class network_ring
         struct ring_point 
         {
 			std::mutex lock;
-			robot *r;
+		    bool has_robot;
+            robot *r;
 		};
         ring_point ring[POINT_COUNT];
 
@@ -25,4 +26,5 @@ class network_ring
 
 	private:
 		int normalize_location(robot*);
+        void draw_ring();
 };

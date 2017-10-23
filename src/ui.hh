@@ -1,9 +1,12 @@
+#include <iostream>
 #include <stdlib.h>
-#include "network_ring.hh"
+#include <unistd.h>
+
 #include "configs.hh"
+#include "network_ring.hh"
 
 class ui
 {
 	public:
-		void draw(network_ring *ring);
+		void draw();
 };

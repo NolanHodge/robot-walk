@@ -1,16 +1,13 @@
 #include "ui.hh"
 
-void ui::draw(network_ring *ring)
+void ui::draw()
 {
-	for (int i = 0; i < POINT_COUNT; i++)
+    int center = 100;
+    for (int i = 0; i < POINT_COUNT/2; i++)
 	{
-		if (ring->ring[i].r != NULL )
-		{
-			std::cout << "R:" << ring->ring[i].r->get_size() << " -- ";
-		}
-		else
-		{
-			std::cout << " R:X -- ";
-		}
-	}
+        int left = i;
+        int right = POINT_COUNT-i;
+        printf("%d  %50d\n",left,right);
+    }
+    printf("'%5d'", center);    
 }

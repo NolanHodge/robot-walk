@@ -65,5 +65,9 @@ void supervisor::execute()
 // Log the output for each robot
 void supervisor::log(std::string s, robot *r)
 {
+    if (!LOGGING)
+    {
+        return;
+    }
     std::cout << "[Robot:" << r->get_id() << " Size:" << r->get_size() << " Location:" << r->get_location() << " Steps Taken: " << r->get_steps_taken() <<  "] " << s << std::endl;
 }
