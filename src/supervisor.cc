@@ -16,7 +16,7 @@ supervisor::supervisor()
 // Select a random location on the ring
 int supervisor::select_random_location()
 {
-	return rand() % ring->get_point_count();
+	return rand() % POINT_COUNT;
 }
 
 // Place the robot on the ring and command robot to walk
@@ -41,7 +41,7 @@ void supervisor::walk(robot *r)
             return; // were done here
 		}
         log("has moved", r);
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        std::this_thread::sleep_for(std::chrono::milliseconds(UI_SPEED));
 	}
 }
 
@@ -65,5 +65,5 @@ void supervisor::execute()
 // Log the output for each robot
 void supervisor::log(std::string s, robot *r)
 {
-    std::cout << "[Robot:" << r->get_id() << " Location:" << r->get_location() << " Steps Taken: " << r->get_steps_taken() <<  "] " << s << std::endl;
+    std::cout << "[Robot:" << r->get_id() << " Size:" << r->get_size() << " Location:" << r->get_location() << " Steps Taken: " << r->get_steps_taken() <<  "] " << s << std::endl;
 }

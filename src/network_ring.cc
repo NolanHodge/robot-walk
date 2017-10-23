@@ -6,9 +6,11 @@ network_ring::network_ring()
 }
 
 // Move a robot on the ring, if a collision happens, merge robots.
+// A collison has happend when a robot tries to to move to a ring point
+// already occupied by another robot.
+// In such case the robots "merge" into a robot of size = (robot1.size + robot2.size).
 int network_ring::move_ring_point(robot *r)
 {
-	ring[r->get_location()].size = 0;
 	ring[r->get_location()].lock.unlock();
 
 	int new_location = normalize_location(r);
@@ -19,7 +21,8 @@ int network_ring::move_ring_point(robot *r)
 	}
 	else 
 	{
-	    ring[new_location].r->reset_steps_taken();
+        ring[new_location].r->increase_size(r->get_size());
+        ring[new_location].r->reset_steps_taken();
 		ring[new_location].r->on_collision();
 		return -1;
 	}
@@ -32,8 +35,8 @@ int network_ring::normalize_location(robot *r)
 	switch (r->get_direction())
 	{
 	case LEFT:
-        return ( (r->get_location() - r->get_speed()) % POINT_COUNT + POINT_COUNT) % POINT_COUNT;
+        return ( (r->get_location() - ROBOT_SPEED) % POINT_COUNT + POINT_COUNT) % POINT_COUNT;
 	case RIGHT:
-		return (r->get_location() + r->get_speed()) % POINT_COUNT;
+		return (r->get_location() + ROBOT_SPEED) % POINT_COUNT;
 	}
 }

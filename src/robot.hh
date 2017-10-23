@@ -15,6 +15,7 @@ class robot
 		int get_direction();
 		int get_location();
 		int set_location(int);
+		int increase_size(int);
 		int get_size();
         int get_id();
         int get_steps_taken();

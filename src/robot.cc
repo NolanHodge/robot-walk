@@ -7,6 +7,7 @@ robot::robot(int l)
 	location = l;
     generate_random_id();
     steps_taken = 0;
+    size = 0;
 }
 
 // Flip a fair coin; heads or tails
@@ -44,7 +45,7 @@ void robot::reset_steps_taken()
 // Increment the amount of steps taken based on the speed of the robot
 void robot::increase_steps_taken()
 {
-    steps_taken+=SPEED;
+    steps_taken+=ROBOT_SPEED;
 }
 
 // Public accessor for the amount of steps a robot has taken
@@ -57,6 +58,18 @@ int robot::get_steps_taken()
 int robot::get_id()
 {
     return id;
+}
+
+// Public accessor for the robots size
+int robot::get_size()
+{
+    return size;
+}
+
+// Increment the size of the robot based on the size of the collided robot
+int robot::increase_size(int robot_size)
+{
+    size += robot_size;
 }
 
 // Get the current location of the robot

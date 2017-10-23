@@ -18,7 +18,6 @@ class network_ring
         {
 			std::mutex lock;
 			robot *r;
-            int size;
 		};
         ring_point ring[POINT_COUNT];
 
