@@ -12,12 +12,14 @@ class robot
 		robot(int);
 		void walk();
 		void on_collision();
-		int get_speed();
 		int get_direction();
 		int get_location();
 		int set_location(int);
 		int get_size();
         int get_id();
+        int get_steps_taken();
+        void increase_steps_taken();
+        void reset_steps_taken();
 
 	private:
 		int flip_coin();
@@ -31,6 +33,7 @@ class robot
 		int size;
 		int location;
         int id;
+        int steps_taken;
 
 	public:
 		int on_round;

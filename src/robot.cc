@@ -5,8 +5,8 @@ robot::robot(int l)
 {
 	direction = change_direction();
 	location = l;
-	speed = SPEED;
     generate_random_id();
+    steps_taken = 0;
 }
 
 // Flip a fair coin; heads or tails
@@ -29,31 +29,49 @@ void robot::on_collision()
 	direction = change_direction();
 }
 
+// Generate a random ID for the robot
 int robot::generate_random_id()
 {
     id = rand();
 }
 
+// Reset the amount of steps a robot has taken
+void robot::reset_steps_taken()
+{
+    steps_taken = 0;
+}
+
+// Increment the amount of steps taken based on the speed of the robot
+void robot::increase_steps_taken()
+{
+    steps_taken+=SPEED;
+}
+
+// Public accessor for the amount of steps a robot has taken
+int robot::get_steps_taken()
+{
+    return steps_taken;
+}
+
+// Public accessor for the robots ID
 int robot::get_id()
 {
     return id;
 }
 
+// Get the current location of the robot
 int robot::get_location()
 {
 	return location;
 }
 
-int robot::get_speed()
-{
-	return speed;
-}
-
+// Get the direction the robot is travelling in
 int robot::get_direction()
 {
 	return direction == LEFT ? LEFT : RIGHT;
 }
 
+// Set a new location for the robot
 int robot::set_location(int new_location)
 {
 	location = new_location;

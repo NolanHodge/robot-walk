@@ -23,7 +23,6 @@ class network_ring
         ring_point ring[POINT_COUNT];
 
         int move_ring_point(robot*);
-		int get_point_count();
 
 	private:
 		int normalize_location(robot*);
