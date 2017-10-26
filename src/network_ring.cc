@@ -46,10 +46,7 @@ int network_ring::normalize_location(robot *r)
 
 void network_ring::draw_ring()
 {
-    if (!UI_ENABLED)
-    {
-        return;
-    }
+    UI_CHECK;
     std::string s = "\r";
     for (int i=0; i<POINT_COUNT; i++)
     {

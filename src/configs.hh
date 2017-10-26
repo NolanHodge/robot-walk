@@ -5,4 +5,6 @@
 #define POINT_COUNT 35
 #define UI_SPEED 2000
 #define UI_ENABLED 1
-#define LOGGING 0 
+#define LOG_ENABLED 0 
+#define UI_CHECK if (!UI_ENABLED) return
+#define LOG_CHECK if (!LOG_ENABLED) return
