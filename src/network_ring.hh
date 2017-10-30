@@ -14,6 +14,13 @@ class network_ring
     public:
         network_ring();
 
+        int move_ring_point(robot*);
+
+	private:
+		int normalize_location(robot*);
+        void draw_ring();
+        
+    private:
         struct ring_point 
         {
 			std::mutex lock;
@@ -21,10 +28,4 @@ class network_ring
             robot *r;
 		};
         ring_point ring[POINT_COUNT];
-
-        int move_ring_point(robot*);
-
-	private:
-		int normalize_location(robot*);
-        void draw_ring();
 };
