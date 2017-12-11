@@ -1,3 +1,6 @@
+![alt text](https://i.imgur.com/NBl3Nex.png)
+
+
 ## Problem:
 
 `n mobile robots are initially placed on a cycle; 
