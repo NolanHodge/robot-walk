@@ -19,6 +19,8 @@ class supervisor
 	    network_ring *ring;
     	void execute();
     	int select_random_location();
+		int* get_robot_positions();
+		int get_robot_count();
     	void walk(robot *r);
     	int round_count;
         void log(std::string, robot *r);

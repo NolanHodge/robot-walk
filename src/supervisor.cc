@@ -3,13 +3,12 @@
 // Ctor
 supervisor::supervisor()
 {
-    network_ring *r = new network_ring();
+    ring = new network_ring();
 	for (int i = 0; i < ROBOT_COUNT; i++) 
     {
 		int location = select_random_location();
 		robots[i] = new robot(location);
 	}
-	ring = r;
 	round_count = 0;
 }
 
@@ -62,6 +61,13 @@ void supervisor::execute()
     }
 }
 
+int* supervisor::get_robot_positions() {
+	return ring->get_robot_positions();
+}
+
+int supervisor::get_robot_count() {
+	return ring->robot_count;
+}
 // Log the output for each robot
 void supervisor::log(std::string s, robot *r)
 {
