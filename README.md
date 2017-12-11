@@ -12,13 +12,13 @@ they can communicate only F2F (Face-to-Face) and do not know each other’s loca
 
 • The question is what is the rendezvous time? It might be interesting even for robots with different speeds.`
 
-## Building
+# Building
 
-# Build without UI
+## Build without UI
  - run `make`
  
- # Build with UI
+## Build with UI
  - run `make ui`
  
- ## Run
+# Run
 - `./a.out`
