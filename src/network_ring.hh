@@ -6,6 +6,7 @@
 #include <sstream>
 #include <stdlib.h>
 #include <mutex>
+#include <cstring>
 
 #include "robot.hh"
 #include "configs.hh"

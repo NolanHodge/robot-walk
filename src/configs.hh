@@ -1,9 +1,9 @@
 #define LEFT 0
 #define RIGHT 1
 #define ROBOT_SPEED 1
-#define ROBOT_COUNT 5
+#define ROBOT_COUNT 2
 #define POINT_COUNT 1000
-#define UI_SPEED 500
+#define UI_SPEED 50
 #define UI_ENABLED 1
 #define LOG_ENABLED 0 
 #define UI_CHECK if (!UI_ENABLED) return

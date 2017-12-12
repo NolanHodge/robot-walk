@@ -26,7 +26,6 @@ int network_ring::move_ring_point(robot *r)
 	}
 	else 
 	{
-		robot_count--;    	
 		ring[new_location].r->increase_size(r->get_size());
         ring[new_location].r->reset_steps_taken();
 		ring[new_location].r->on_collision();
@@ -55,15 +54,7 @@ int network_ring::normalize_location(robot *r)
 void network_ring::draw_ring()
 {
 	UI_CHECK;
-	if (move_count == robot_count) 
-	{
-		move_count = 0;
-	} 
-	else 
-	{
-		move_count++;
-		return;
-	}
+	
 	if (DRAW_ASCII) 
 	{
 		std::string s = "\r";
@@ -83,8 +74,10 @@ void network_ring::draw_ring()
 	    std::cout << s;
 	    fflush(stdout);
 	}
-	int robot_counter = 0;
+	int *wipe = (int*)calloc(ROBOT_COUNT, sizeof(int));
+	std::memcpy(robot_positions, wipe, ROBOT_COUNT);
 	if (DRAW_OPENGL) {
+		int robot_counter = 0;
 		for (int i=0; i<POINT_COUNT; i++)
 	    {
 	        if (ring[i].has_robot)
