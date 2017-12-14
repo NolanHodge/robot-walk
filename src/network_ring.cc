@@ -29,6 +29,7 @@ int network_ring::move_ring_point(robot *r)
 	{
 		ring[new_location].r->increase_size(r->get_size());
         ring[new_location].r->change_direction();
+        ring[new_location].r->reset_steps_taken();
 		r->on_collision();
 		return -1;
 	}

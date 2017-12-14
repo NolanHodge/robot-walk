@@ -1,11 +1,16 @@
 #!/bin/sh
 
+if [ -z $1 ]; then
+	echo "you must specify the number of robots! (ex. ./test-robot-walk-ui.sh 12)" 
+	exit 1
+fi
+
 ROBOT_COUNT=$1
 POINT_COUNT=1000
 UI_ENABLED=0
-UI_SPEED=0
+UI_SPEED=10
 LOG_ENABLED=0
-MAKE=`make ui`
+MAKE="make ui"
 ROBOT_WALK=./robot-walk-ui
 UI_ENABLED=1
 UI_SPEED=10
@@ -24,7 +29,6 @@ echo "Disabling Logging..."
 sed -i 's/#define\ LOG_ENABLED.*/#define\ LOG_ENABLED\ '$LOG_ENABLED'/g' configs.hh
 
 echo "Enabling UI..."
-
 sed -i 's/#define\ UI_ENABLED.*/#define\ UI_ENABLED\ '$UI_ENABLED'/g' configs.hh
 
 echo "Enabling UI Speed..."

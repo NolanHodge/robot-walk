@@ -58,6 +58,7 @@ void supervisor::walk(robot *r)
 		if (r->get_steps_taken() == POINT_COUNT/2) 
 		{
 			r->change_direction();
+			r->reset_steps_taken();
 		}
 		log("has moved", r);
         std::this_thread::sleep_for(std::chrono::milliseconds(UI_SPEED));
