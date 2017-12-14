@@ -1,25 +1,33 @@
 #include "robot.hh"
-
+	
 // Ctor
 robot::robot(int l)
 {
-	direction = change_direction();
+	change_direction();
 	location = l;
+    last_token_seen = 0;
     generate_random_id();
     steps_taken = 0;
-    size = 0;
+    size = 1;
 }
 
 // Flip a fair coin; heads or tails
 int robot::flip_coin() 
 {
-	return rand() % 2;
+	prandom r;
+	return r.get_random_number(2);
 }
 
 // Change the direction the robot walks based on 
 int robot::change_direction()
 {
-	return flip_coin();
+ 	direction = flip_coin();
+}
+
+// Flip the direction the robot walks based on 
+void robot::flip_direction()
+{
+	direction = !direction;
 }
 
 // When we collide with another robot
@@ -27,13 +35,13 @@ int robot::change_direction()
 void robot::on_collision()
 {
 	size++;
-	direction = change_direction();
+	change_direction();
 }
 
 // Generate a random ID for the robot
 int robot::generate_random_id()
 {
-    id = rand();
+	id = rand();
 }
 
 // Reset the amount of steps a robot has taken
@@ -57,7 +65,7 @@ int robot::get_steps_taken()
 // Public accessor for the robots ID
 int robot::get_id()
 {
-    return id;
+	return id;
 }
 
 // Public accessor for the robots size

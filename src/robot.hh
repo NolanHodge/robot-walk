@@ -3,7 +3,11 @@
 #endif
 
 #include <stdlib.h>
+#include <random>
+#include <mutex>
+
 #include "configs.hh"
+#include "prandom.hh"
 
 class robot
 {
@@ -21,10 +25,11 @@ class robot
         int get_steps_taken();
         void increase_steps_taken();
         void reset_steps_taken();
+		int change_direction();
+		void flip_direction();
 
 	private:
 		int flip_coin();
-		int change_direction();
 	    int generate_random_id();
         
 	// Variables
@@ -38,4 +43,5 @@ class robot
 
 	public:
 		int on_round;
+		int last_token_seen;
 };

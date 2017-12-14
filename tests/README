@@ -1,0 +1,15 @@
+robot-walk test suite
+
+Running shell scripts with ./ works with chmod +x *.sh or prepend '/bin/sh ' to any script
+
+Declare the amount of robots by specifying first argument on cmd line
+
+Ex: ./test-robot-walk.sh 2
+Ex: ./test-robot-walk-ui.sh 2
+
+Build source by specifying -b after roubot count
+
+Ex: ./test-robot-walk.sh 2 -b
+Ex: ./test-robot-walk-ui.sh 2 -b
+
+

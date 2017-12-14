@@ -23,5 +23,8 @@ class supervisor
 		int get_robot_count();
     	void walk(robot *r);
     	int round_count;
-        void log(std::string, robot *r);
+		int rendezvouz_count;
+		int* get_robot_sizes();
+		void log(std::string, robot *r);
+		int total_steps_taken;
 };

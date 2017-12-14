@@ -14,8 +14,9 @@
 static int radius = 2;
 const float DEG2RAD = 3.14159/180; 
 supervisor sup;
-int *pos = {};
 int len = 0;
+int *pos = {};
+int *sizes = {};
 clock_t start = clock();
 
 void init()
@@ -69,14 +70,18 @@ void render_string(float x, float y, void *font, const unsigned char* string )
 void draw_robots() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	draw_circle();
+
 	for (int i=0; i<len; i++) {
-		printf("Robot at: %d\n", pos[i]);
-		glPointSize(10.0);
+		if (pos[i] == -1) {
+			continue;
+		}
+		glPointSize(9+sizes[i]);
 		glBegin(GL_POINTS); 
 		glColor3f(255, 0, 0);
 	    glVertex3f(cos(2*3.14159*pos[i]/1000.0),sin(2*3.14159*pos[i]/1000.0),0);
 		glEnd();
 	}
+	
 	clock_t now = clock();
 	clock_t ticks = now - start;
 
@@ -86,7 +91,7 @@ void draw_robots() {
 	
 	sprintf(time, "time: %f", ticks/(double)CLOCKS_PER_SEC);
 	sprintf(total,"total robots: %d", ROBOT_COUNT);
-	sprintf(left, "robots left: %d", len);
+	sprintf(left, "rendezvouz count: %d", sup.rendezvouz_count);
 	render_string(-1.15, 1.06f, GLUT_BITMAP_HELVETICA_12, (const unsigned char*)total);
 	render_string(-1.15, 1, GLUT_BITMAP_HELVETICA_12, (const unsigned char*)left);
 	render_string(-1.15, 0.94, GLUT_BITMAP_HELVETICA_12, (const unsigned char*)time);
@@ -111,6 +116,7 @@ void display()
 void timer(int)
 {
 	pos = sup.get_robot_positions();
+	sizes = sup.get_robot_sizes();
 	len = sup.get_robot_count();
 	draw_robots();
     glutPostRedisplay();

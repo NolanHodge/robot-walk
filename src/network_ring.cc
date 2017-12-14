@@ -23,16 +23,15 @@ int network_ring::move_ring_point(robot *r)
 		ring[new_location].r = r;
         ring[new_location].has_robot = true;
 	    ring[r->get_location()].r = NULL;
+    	return new_location;
 	}
 	else 
 	{
 		ring[new_location].r->increase_size(r->get_size());
-        ring[new_location].r->reset_steps_taken();
-		ring[new_location].r->on_collision();
+        ring[new_location].r->change_direction();
+		r->on_collision();
 		return -1;
 	}
-	draw_ring();
-    return new_location;
 }
 
 int* network_ring::get_robot_positions() {

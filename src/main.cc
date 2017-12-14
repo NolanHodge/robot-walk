@@ -1,15 +1,13 @@
 #include "supervisor.hh"
 #include "configs.hh"
 
-int main()
+int main(int argc, char* argv[])
 {
-	clock_t start = clock();
-    
-    supervisor sup;
- 	sup.execute();
-
-    clock_t end = clock();
-    clock_t ticks = end - start;
-
-    std::cout << ticks / (double) CLOCKS_PER_SEC << std::endl;
+	for (int i=0; i<50; i++) {
+	    supervisor sup;
+	 	sup.execute();
+		std::cout << sup.total_steps_taken << ", ";
+	}
+	std::cout << "num robots : " << ROBOT_COUNT << std::endl;
+	std::cout << "ring size  : " << POINT_COUNT << std::endl;
 }
